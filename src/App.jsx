@@ -473,7 +473,7 @@ const PRODUCTS = [
 ];
 
 const TESTIMONIALS = [
-  { name: "James Mwangi", role: "Civil Contractor, Ruu", text: "Nimekuwa nikitumia Bravo wa Ndarugo kwa miaka miwili. Delivery ni haraka sana na mawe ni ya kweli ya ubora.", stars: 5 },
+  { name: "James Mwangi", role: "Civil Contractor, Ruiru", text: "Nimekuwa nikitumia Brayo wa Ndarugo kwa miaka miwili. Delivery ni haraka sana na mawe ni ya kweli ya ubora.", stars: 5 },
   { name: "Eng. Patricia Wanjiku", role: "Site Engineer, Juja", text: "The ballast and aggregates are consistently graded. I've recommended this supplier to three different developers this year alone.", stars: 5 },
   { name: "Samuel Kariuki", role: "Home Builder, Kiambu", text: "Nilipigia simu na bei ilikuwa nzuri kuliko wengine. Walidelivery siku moja. Nitaendelea kutumia Bravo tu.", stars: 5 },
   { name: "David Njoroge", role: "Developer, Thika Road", text: "Best supplier I've worked with in 10 years of construction. Always on time, quality consistent, very responsive on WhatsApp.", stars: 5 },
@@ -565,7 +565,7 @@ function Navbar() {
               </div>
             </div>
             <div>
-              <div style={{ fontFamily: 'var(--font-serif)', fontWeight: 700, fontSize: '1.15rem', color: 'var(--ink)', lineHeight: 1.1 }}>Bravo <em style={{ color: 'var(--gold)', fontStyle: 'italic' }}>wa</em> Ndarugo</div>
+              <div style={{ fontFamily: 'var(--font-serif)', fontWeight: 700, fontSize: '1.15rem', color: 'var(--ink)', lineHeight: 1.1 }}>Brayo <em style={{ color: 'var(--gold)', fontStyle: 'italic' }}>wa</em> Ndarugo</div>
               <div style={{ fontFamily: 'var(--font-mono)', color: 'var(--ink5)', fontSize: '0.52rem', letterSpacing: '0.2em', textTransform: 'uppercase', marginTop: '2px' }}>Building Materials · Kiambu</div>
             </div>
           </a>
@@ -586,7 +586,7 @@ function Navbar() {
       {menuOpen && (
         <div style={{ position: 'fixed', inset: 0, zIndex: 490, background: 'var(--cream)', display: 'flex', flexDirection: 'column', padding: '2rem', animation: 'fadeIn 0.2s ease' }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '4rem' }}>
-            <div style={{ fontFamily: 'var(--font-serif)', fontWeight: 700, fontSize: '1.3rem', color: 'var(--ink)' }}>Bravo <em style={{ color: 'var(--gold)' }}>wa</em> Ndarugo</div>
+            <div style={{ fontFamily: 'var(--font-serif)', fontWeight: 700, fontSize: '1.3rem', color: 'var(--ink)' }}>Brayo <em style={{ color: 'var(--gold)' }}>wa</em> Ndarugo</div>
             <button onClick={() => setMenuOpen(false)} style={{ background: 'none', border: 'none', color: 'var(--ink4)' }}><XIcon s={26} /></button>
           </div>
           {links.map((l, i) => (
@@ -1076,7 +1076,7 @@ function Footer() {
       <div style={{ maxWidth: '1280px', margin: '0 auto', padding: '5rem 1.5rem 2.5rem' }}>
         <div className="footer-inner" style={{ display: 'flex', gap: '4rem', flexWrap: 'wrap', justifyContent: 'space-between', marginBottom: '4rem' }}>
           <div style={{ maxWidth: '320px', minWidth: '220px', flexShrink: 0 }}>
-            <div style={{ fontFamily: 'var(--font-serif)', fontWeight: 700, fontSize: '1.5rem', color: 'var(--white)', marginBottom: '0.25rem' }}>Bravo <em style={{ color: 'var(--gold)', fontStyle: 'italic' }}>wa</em> Ndarugo</div>
+            <div style={{ fontFamily: 'var(--font-serif)', fontWeight: 700, fontSize: '1.5rem', color: 'var(--white)', marginBottom: '0.25rem' }}>Brayo <em style={{ color: 'var(--gold)', fontStyle: 'italic' }}>wa</em> Ndarugo</div>
             <div style={{ fontFamily: 'var(--font-mono)', color: 'rgba(255,255,255,0.2)', fontSize: '0.55rem', letterSpacing: '0.2em', textTransform: 'uppercase', marginBottom: '1.5rem' }}>Building Materials · Kiambu County, Kenya</div>
             <p style={{ color: 'rgba(255,255,255,0.25)', fontSize: '0.82rem', lineHeight: 1.85, marginBottom: '2rem', fontWeight: 300 }}>Kenya's fastest-growing supplier of yellow stones, bush stones, ballast, river sand and more. Same-day delivery to Nairobi, Kiambu and beyond.</p>
             <div style={{ display: 'flex', gap: '0.6rem' }}>
