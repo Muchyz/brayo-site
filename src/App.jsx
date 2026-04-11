@@ -473,7 +473,7 @@ const PRODUCTS = [
 ];
 
 const TESTIMONIALS = [
-  { name: "James Mwangi", role: "Civil Contractor, Ruiru", text: "Nimekuwa nikitumia Bravo wa Ndarugo kwa miaka miwili. Delivery ni haraka sana na mawe ni ya kweli ya ubora.", stars: 5 },
+  { name: "James Mwa", role: "Civil Contractor, Ruiru", text: "Nimekuwa nikitumia Bravo wa Ndarugo kwa miaka miwili. Delivery ni haraka sana na mawe ni ya kweli ya ubora.", stars: 5 },
   { name: "Eng. Patricia Wanjiku", role: "Site Engineer, Juja", text: "The ballast and aggregates are consistently graded. I've recommended this supplier to three different developers this year alone.", stars: 5 },
   { name: "Samuel Kariuki", role: "Home Builder, Kiambu", text: "Nilipigia simu na bei ilikuwa nzuri kuliko wengine. Walidelivery siku moja. Nitaendelea kutumia Bravo tu.", stars: 5 },
   { name: "David Njoroge", role: "Developer, Thika Road", text: "Best supplier I've worked with in 10 years of construction. Always on time, quality consistent, very responsive on WhatsApp.", stars: 5 },
