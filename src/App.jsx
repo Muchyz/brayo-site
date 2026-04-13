@@ -517,11 +517,12 @@ function MachineCutPricePanel() {
   );
 }
 
+
 const PRODUCTS = [
+  { name: "Machine Cut Stones", cat: "stones", desc: "1,000 pcs of 6×9 Ndarugo machine-cut stones per truck (mguu kumi). Laser-precise cuts, perfect uniformity — straight from Juja. Transport included to your area.", img: "/product-machinecut.jpg", tag: "DELIVERY INCLUDED", price: "From Ksh 40K", unit: "/1000pcs", isMachineCut: true },
   { name: "Yellow Stones", cat: "stones", desc: "Premium yellow quarry stones — warm-toned, strong and highly sought after for walling, foundations and feature finishes. Sourced fresh from our quarry.", img: "/product-yellowstones.jpg", tag: "BEST SELLER", price: "KES 8,000+", unit: "/truck" },
   { name: "Bush Stones", cat: "stones", desc: "Natural bush stones ideal for rustic walling, perimeter fencing and heavy-duty foundations. Durable, affordable and delivered in bulk loads.", img: "/product-bushstones.jpg", tag: "POPULAR", price: "KES 7,500+", unit: "/truck" },
   { name: "Ballast", cat: "sand", desc: "Clean, well-graded ballast for structural concrete. Consistently graded for reliable strength, every pour.", img: "/product-ballast.jpg", tag: "", price: "KES 7,500+", unit: "/truck" },
-  { name: "Machine Cut Stones", cat: "stones", desc: "1,000 pcs of 6×9 Ndarugo machine-cut stones per truck (mguu kumi). Laser-precise cuts, perfect uniformity — straight from Juja. Transport included to your area.", img: "/product-machinecut.jpg", tag: "DELIVERY INCLUDED", price: "From Ksh 40K", unit: "/1000pcs", isMachineCut: true },
   { name: "Foundation Stones", cat: "stones", desc: "Heavy-duty stones engineered for deep foundations and load-bearing structures. The backbone of every solid build — sourced direct from Ndarugo.", img: "/product-foundationstones.jpg", tag: "NEW", price: "KES 9,000+", unit: "/truck" },
   { name: "River Sand", cat: "sand", desc: "Fine, clean river sand for plastering, block-making and concrete. Sourced fresh, delivered direct to site.", img: "/product-sand.jpg", tag: "", price: "KES 6,500+", unit: "/truck" },
 ];
