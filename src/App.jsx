@@ -1,10 +1,10 @@
 import { useEffect, useState, useRef, useCallback, useMemo } from "react";
 
-const PHONE = "+254712319654";
-const WA_NUMBER = "254712319654";
+const PHONE = "+254752497070";
+const WA_NUMBER = "254752497070";
 const BUSINESS_NAME = "Brayo wa Ndarugo Mawe";
 const TIKTOK_URL = "https://vm.tiktok.com/ZS9LLoHapUneQ-GhztX/";
-const FACEBOOK_URL = "https://www.facebook.com/brayo.mars.3";
+const FACEBOOK_URL = "https://www.facebook.com/brayo.wa.ndarugo.mawe.2025";
 
 const wa = (msg) => `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(msg)}`;
 
@@ -203,6 +203,14 @@ const GLOBAL_CSS = `
   .toast-body { font-family: var(--font-mono); font-size: 0.62rem; letter-spacing: 0.08em; color: rgba(255,255,255,0.4); }
 
   .gallery-item { cursor: zoom-in; }
+
+  /* Machine cut pricing table */
+  .mc-price-table { width: 100%; border-collapse: collapse; margin-top: 0.75rem; }
+  .mc-price-table tr { border-bottom: 1px solid rgba(255,255,255,0.06); }
+  .mc-price-table tr:last-child { border-bottom: none; }
+  .mc-price-table td { padding: 0.45rem 0.6rem; font-family: var(--font-mono); font-size: 0.62rem; }
+  .mc-price-table td:first-child { color: rgba(255,255,255,0.55); }
+  .mc-price-table td:last-child { color: var(--gold); text-align: right; font-weight: 500; letter-spacing: 0.06em; }
 
   @media (max-width: 767px) {
     .gallery-main-grid {
@@ -463,17 +471,63 @@ const FacebookIcon = () => <svg width="14" height="14" viewBox="0 0 24 24" fill=
 const TikTokIcon = () => <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.34 6.34 0 106.34 6.34V8.69a8.18 8.18 0 004.79 1.54V6.78a4.85 4.85 0 01-1.02-.09z" /></svg>;
 const ZoomIcon = ({ s = 18 }) => <svg width={s} height={s} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>;
 
+// Machine cut stones pricing data (1000 pcs 6×9, transport included)
+const MC_PRICES = [
+  { area: "Ruiru", price: "Ksh 40,000" },
+  { area: "Mwiki / Ruai", price: "Ksh 42,000" },
+  { area: "Utawala", price: "Ksh 44,000" },
+  { area: "Kikuyu / Kitengela", price: "Ksh 45,000" },
+  { area: "Rongai", price: "Ksh 48,000" },
+  { area: "Isinya", price: "Ksh 50,000" },
+  { area: "Nyeri / Naivasha / Machakos", price: "Ksh 55,000" },
+  { area: "Gilgil", price: "Ksh 60,000" },
+  { area: "Nanyuki / Nakuru", price: "Ksh 65,000" },
+  { area: "Nyahururu", price: "Ksh 70,000" },
+  { area: "Homabay / Kisumu / Migori / Kakamega", price: "Ksh 85,000" },
+];
+
+function MachineCutPricePanel() {
+  const [open, setOpen] = useState(false);
+  return (
+    <div style={{ marginTop: '1rem', border: '1px solid rgba(196,154,42,0.25)', borderRadius: '2px', overflow: 'hidden' }}>
+      <button
+        onClick={() => setOpen(o => !o)}
+        style={{ width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '0.65rem 0.9rem', background: 'rgba(196,154,42,0.08)', border: 'none', cursor: 'pointer', gap: '0.5rem' }}
+      >
+        <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.6rem', letterSpacing: '0.12em', color: 'var(--gold)', textTransform: 'uppercase' }}>📍 Delivery prices by area</span>
+        <span style={{ color: 'var(--gold)', flexShrink: 0 }}>{open ? <ChevUp /> : <ChevDown />}</span>
+      </button>
+      {open && (
+        <div style={{ background: 'rgba(15,12,8,0.6)', padding: '0.5rem 0.25rem', animation: 'fadeUp 0.2s ease' }}>
+          <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.55rem', letterSpacing: '0.14em', color: 'rgba(255,255,255,0.3)', padding: '0.35rem 0.6rem 0.5rem', textTransform: 'uppercase' }}>1,000 pcs 6×9 · Transport Included · Payment on Site</div>
+          <table className="mc-price-table">
+            <tbody>
+              {MC_PRICES.map(r => (
+                <tr key={r.area}>
+                  <td>{r.area}</td>
+                  <td>{r.price}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+          <div style={{ padding: '0.5rem 0.6rem 0.25rem', fontFamily: 'var(--font-mono)', fontSize: '0.52rem', color: 'rgba(255,255,255,0.2)', letterSpacing: '0.08em' }}>Other areas? WhatsApp your location for a quote.</div>
+        </div>
+      )}
+    </div>
+  );
+}
+
 const PRODUCTS = [
   { name: "Yellow Stones", cat: "stones", desc: "Premium yellow quarry stones — warm-toned, strong and highly sought after for walling, foundations and feature finishes. Sourced fresh from our quarry.", img: "/product-yellowstones.jpg", tag: "BEST SELLER", price: "KES 8,000+", unit: "/truck" },
   { name: "Bush Stones", cat: "stones", desc: "Natural bush stones ideal for rustic walling, perimeter fencing and heavy-duty foundations. Durable, affordable and delivered in bulk loads.", img: "/product-bushstones.jpg", tag: "POPULAR", price: "KES 7,500+", unit: "/truck" },
   { name: "Ballast", cat: "sand", desc: "Clean, well-graded ballast for structural concrete. Consistently graded for reliable strength, every pour.", img: "/product-ballast.jpg", tag: "", price: "KES 7,500+", unit: "/truck" },
-  { name: "Machine Cut Stones", cat: "stones", desc: "Laser-precise cuts for flawless, clean walls. Perfect uniformity for residential and premium commercial builds.", img: "/product-machinecut.jpg", tag: "", price: "KES 12,000+", unit: "/truck" },
+  { name: "Machine Cut Stones", cat: "stones", desc: "1,000 pcs of 6×9 Ndarugo machine-cut stones per truck (mguu kumi). Laser-precise cuts, perfect uniformity — straight from Juja. Transport included to your area.", img: "/product-machinecut.jpg", tag: "DELIVERY INCLUDED", price: "From Ksh 40K", unit: "/1000pcs", isMachineCut: true },
   { name: "Foundation Stones", cat: "stones", desc: "Heavy-duty stones engineered for deep foundations and load-bearing structures. The backbone of every solid build — sourced direct from Ndarugo.", img: "/product-foundationstones.jpg", tag: "NEW", price: "KES 9,000+", unit: "/truck" },
   { name: "River Sand", cat: "sand", desc: "Fine, clean river sand for plastering, block-making and concrete. Sourced fresh, delivered direct to site.", img: "/product-sand.jpg", tag: "", price: "KES 6,500+", unit: "/truck" },
 ];
 
 const TESTIMONIALS = [
-  { name: "James Mwangi", role: "Civil Contractor, Ruiru", text: "Nimekuwa nikitumia Brayo wa Ndarugo kwa miaka miwili. Delivery ni haraka sana na mawe ni ya kweli ya ubora.", stars: 5 },
+  { name: "James Mwangi", role: "Civil Contractor, Ruiru", text: "Nimekuwa nikitumia Bravo wa Ndarugo kwa miaka miwili. Delivery ni haraka sana na mawe ni ya kweli ya ubora.", stars: 5 },
   { name: "Eng. Patricia Wanjiku", role: "Site Engineer, Juja", text: "The ballast and aggregates are consistently graded. I've recommended this supplier to three different developers this year alone.", stars: 5 },
   { name: "Samuel Kariuki", role: "Home Builder, Kiambu", text: "Nilipigia simu na bei ilikuwa nzuri kuliko wengine. Walidelivery siku moja. Nitaendelea kutumia Bravo tu.", stars: 5 },
   { name: "David Njoroge", role: "Developer, Thika Road", text: "Best supplier I've worked with in 10 years of construction. Always on time, quality consistent, very responsive on WhatsApp.", stars: 5 },
@@ -482,7 +536,7 @@ const TESTIMONIALS = [
 const FAQS = [
   { q: "Do you offer same-day delivery?", a: "Yes! Same-day delivery within Nairobi, Kiambu, Ruiru, and Juja for orders placed before 10:00 AM. Delivery slots fill up fast — call early to secure yours." },
   { q: "What is the minimum order?", a: "Minimum order is 1 truck load. We serve small homebuilders and large contractors alike with equal care." },
-  { q: "Which areas do you deliver to?", a: "We deliver across Nairobi, Kiambu, Ruiru, Juja, Thika, Githurai, Kahawa, Limuru and surrounding areas." },
+  { q: "Which areas do you deliver to?", a: "We deliver across Nairobi, Kiambu, Ruiru, Juja, Thika, Githurai, Kahawa, Limuru and surrounding areas. Machine-cut stones available nationwide — Nakuru, Nyeri, Kisumu, Machakos and more." },
   { q: "How do I place an order?", a: "Click 'Order via WhatsApp' or call us directly. Tell us what you need, your location, and quantity — we give a transparent quote and confirm delivery within the hour." },
   { q: "Do you offer bulk discounts?", a: "Absolutely. Contractors and developers ordering 3+ trucks receive preferential rates. Ask us for a bulk quotation." },
   { q: "What payment methods do you accept?", a: "We accept M-Pesa, bank transfer, and cash on delivery for your convenience." },
@@ -494,7 +548,7 @@ const PRICING = [
   { item: "Yellow Stones", price: "From KES 8,000", unit: "per truck", pop: false },
   { item: "Bush Stones", price: "From KES 7,500", unit: "per truck", pop: false },
   { item: "Ballast", price: "From KES 7,500", unit: "per truck", pop: true },
-  { item: "Machine Cut Stones", price: "From KES 12,000", unit: "per truck", pop: false },
+  { item: "Machine Cut Stones", price: "From Ksh 40,000", unit: "1000 pcs · transport incl.", pop: false, isMachineCut: true },
   { item: "Foundation Stones", price: "From KES 9,000", unit: "per truck", pop: false },
   { item: "River Sand", price: "From KES 6,500", unit: "per truck", pop: false },
 ];
@@ -565,7 +619,7 @@ function Navbar() {
               </div>
             </div>
             <div>
-              <div style={{ fontFamily: 'var(--font-serif)', fontWeight: 700, fontSize: '1.15rem', color: 'var(--ink)', lineHeight: 1.1 }}>Brayo <em style={{ color: 'var(--gold)', fontStyle: 'italic' }}>wa</em> Ndarugo</div>
+              <div style={{ fontFamily: 'var(--font-serif)', fontWeight: 700, fontSize: '1.15rem', color: 'var(--ink)', lineHeight: 1.1 }}>Bravo <em style={{ color: 'var(--gold)', fontStyle: 'italic' }}>wa</em> Ndarugo</div>
               <div style={{ fontFamily: 'var(--font-mono)', color: 'var(--ink5)', fontSize: '0.52rem', letterSpacing: '0.2em', textTransform: 'uppercase', marginTop: '2px' }}>Building Materials · Kiambu</div>
             </div>
           </a>
@@ -586,7 +640,7 @@ function Navbar() {
       {menuOpen && (
         <div style={{ position: 'fixed', inset: 0, zIndex: 490, background: 'var(--cream)', display: 'flex', flexDirection: 'column', padding: '2rem', animation: 'fadeIn 0.2s ease' }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '4rem' }}>
-            <div style={{ fontFamily: 'var(--font-serif)', fontWeight: 700, fontSize: '1.3rem', color: 'var(--ink)' }}>Brayo <em style={{ color: 'var(--gold)' }}>wa</em> Ndarugo</div>
+            <div style={{ fontFamily: 'var(--font-serif)', fontWeight: 700, fontSize: '1.3rem', color: 'var(--ink)' }}>Bravo <em style={{ color: 'var(--gold)' }}>wa</em> Ndarugo</div>
             <button onClick={() => setMenuOpen(false)} style={{ background: 'none', border: 'none', color: 'var(--ink4)' }}><XIcon s={26} /></button>
           </div>
           {links.map((l, i) => (
@@ -700,25 +754,40 @@ function ProductCard({ p, i }) {
       <div style={{ position: 'relative', height: '230px', overflow: 'hidden' }}>
         <img loading="lazy" src={p.img} alt={p.name} style={{ width: '100%', height: '100%', objectFit: 'cover', transform: hov ? 'scale(1.07)' : 'scale(1)', transition: 'transform 0.7s var(--ease-smooth)', filter: 'saturate(0.8) contrast(1.05)' }} />
         <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(15,12,8,0.65) 0%, rgba(15,12,8,0.1) 50%, transparent 100%)' }} />
-        {p.tag && <div style={{ position: 'absolute', top: 0, right: 0, background: 'var(--gold)', color: 'var(--ink)', fontFamily: 'var(--font-mono)', fontSize: '0.55rem', fontWeight: 500, letterSpacing: '0.2em', padding: '0.35rem 0.75rem', textTransform: 'uppercase' }}>{p.tag}</div>}
+        {p.tag && <div style={{ position: 'absolute', top: 0, right: 0, background: p.tag === 'DELIVERY INCLUDED' ? 'var(--sage)' : 'var(--gold)', color: 'var(--white)', fontFamily: 'var(--font-mono)', fontSize: '0.5rem', fontWeight: 500, letterSpacing: '0.18em', padding: '0.35rem 0.75rem', textTransform: 'uppercase' }}>{p.tag}</div>}
         <div style={{ position: 'absolute', bottom: '1rem', left: '1.25rem' }}>
           <div style={{ fontFamily: 'var(--font-serif)', fontWeight: 700, fontSize: '1.6rem', color: 'var(--white)', lineHeight: 1 }}>{p.price}</div>
           <div style={{ fontFamily: 'var(--font-mono)', color: 'rgba(255,255,255,0.55)', fontSize: '0.58rem', letterSpacing: '0.1em', textTransform: 'uppercase' }}>{p.unit}</div>
         </div>
       </div>
-      <div style={{ padding: '1.5rem' }}>
-        <h3 style={{ fontFamily: 'var(--font-serif)', fontWeight: 700, fontSize: '1.2rem', color: 'var(--ink)', marginBottom: '0.65rem', lineHeight: 1.2 }}>{p.name}</h3>
-        <p style={{ color: 'var(--ink4)', fontSize: '0.82rem', lineHeight: 1.7, marginBottom: '1.4rem', fontWeight: 300 }}>{p.desc}</p>
-        <div style={{ display: 'flex', gap: '0.5rem' }}>
-          <a href={wa(MSG.product(p.name))} target="_blank" rel="noopener noreferrer"
-            style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'space-between', border: '1px solid var(--cream3)', color: 'var(--ink3)', fontFamily: 'var(--font-mono)', fontWeight: 500, fontSize: '0.68rem', letterSpacing: '0.1em', padding: '0.75rem 1rem', textDecoration: 'none', transition: 'all 0.2s', borderRadius: '2px' }}
-            onMouseEnter={e => { e.currentTarget.style.background = 'var(--gold)'; e.currentTarget.style.color = 'var(--ink)'; e.currentTarget.style.borderColor = 'var(--gold)'; }}
-            onMouseLeave={e => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = 'var(--ink3)'; e.currentTarget.style.borderColor = 'var(--cream3)'; }}>
-            <span style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}><WAIcon s={12} /> GET QUOTE</span>
-            <ArrowUpRight s={12} />
-          </a>
-          <a href={`tel:${PHONE}`} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', border: '1px solid var(--cream3)', color: 'var(--ink4)', padding: '0.75rem 0.85rem', textDecoration: 'none', transition: 'all 0.2s', borderRadius: '2px' }} onMouseEnter={e => { e.currentTarget.style.borderColor = 'var(--gold)'; e.currentTarget.style.color = 'var(--gold)'; }} onMouseLeave={e => { e.currentTarget.style.borderColor = 'var(--cream3)'; e.currentTarget.style.color = 'var(--ink4)'; }}><PhoneIcon s={13} /></a>
-        </div>
+      <div style={{ padding: '1.5rem', background: p.isMachineCut ? 'var(--ink2)' : 'var(--white)', transition: 'background 0.2s' }}>
+        <h3 style={{ fontFamily: 'var(--font-serif)', fontWeight: 700, fontSize: '1.2rem', color: p.isMachineCut ? 'var(--white)' : 'var(--ink)', marginBottom: '0.65rem', lineHeight: 1.2 }}>{p.name}</h3>
+        <p style={{ color: p.isMachineCut ? 'rgba(255,255,255,0.45)' : 'var(--ink4)', fontSize: '0.82rem', lineHeight: 1.7, marginBottom: p.isMachineCut ? '0' : '1.4rem', fontWeight: 300 }}>{p.desc}</p>
+        {p.isMachineCut && <MachineCutPricePanel />}
+        {!p.isMachineCut && (
+          <div style={{ display: 'flex', gap: '0.5rem' }}>
+            <a href={wa(MSG.product(p.name))} target="_blank" rel="noopener noreferrer"
+              style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'space-between', border: '1px solid var(--cream3)', color: 'var(--ink3)', fontFamily: 'var(--font-mono)', fontWeight: 500, fontSize: '0.68rem', letterSpacing: '0.1em', padding: '0.75rem 1rem', textDecoration: 'none', transition: 'all 0.2s', borderRadius: '2px' }}
+              onMouseEnter={e => { e.currentTarget.style.background = 'var(--gold)'; e.currentTarget.style.color = 'var(--ink)'; e.currentTarget.style.borderColor = 'var(--gold)'; }}
+              onMouseLeave={e => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = 'var(--ink3)'; e.currentTarget.style.borderColor = 'var(--cream3)'; }}>
+              <span style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}><WAIcon s={12} /> GET QUOTE</span>
+              <ArrowUpRight s={12} />
+            </a>
+            <a href={`tel:${PHONE}`} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', border: '1px solid var(--cream3)', color: 'var(--ink4)', padding: '0.75rem 0.85rem', textDecoration: 'none', transition: 'all 0.2s', borderRadius: '2px' }} onMouseEnter={e => { e.currentTarget.style.borderColor = 'var(--gold)'; e.currentTarget.style.color = 'var(--gold)'; }} onMouseLeave={e => { e.currentTarget.style.borderColor = 'var(--cream3)'; e.currentTarget.style.color = 'var(--ink4)'; }}><PhoneIcon s={13} /></a>
+          </div>
+        )}
+        {p.isMachineCut && (
+          <div style={{ display: 'flex', gap: '0.5rem', marginTop: '1.25rem' }}>
+            <a href={wa(MSG.product(p.name))} target="_blank" rel="noopener noreferrer"
+              style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'space-between', border: '1px solid rgba(196,154,42,0.35)', color: 'var(--gold)', fontFamily: 'var(--font-mono)', fontWeight: 500, fontSize: '0.68rem', letterSpacing: '0.1em', padding: '0.75rem 1rem', textDecoration: 'none', transition: 'all 0.2s', borderRadius: '2px', background: 'rgba(196,154,42,0.07)' }}
+              onMouseEnter={e => { e.currentTarget.style.background = 'var(--gold)'; e.currentTarget.style.color = 'var(--ink)'; e.currentTarget.style.borderColor = 'var(--gold)'; }}
+              onMouseLeave={e => { e.currentTarget.style.background = 'rgba(196,154,42,0.07)'; e.currentTarget.style.color = 'var(--gold)'; e.currentTarget.style.borderColor = 'rgba(196,154,42,0.35)'; }}>
+              <span style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}><WAIcon s={12} /> ORDER NOW</span>
+              <ArrowUpRight s={12} />
+            </a>
+            <a href={`tel:${PHONE}`} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', border: '1px solid rgba(196,154,42,0.25)', color: 'var(--gold)', padding: '0.75rem 0.85rem', textDecoration: 'none', transition: 'all 0.2s', borderRadius: '2px' }} onMouseEnter={e => { e.currentTarget.style.borderColor = 'var(--gold)'; e.currentTarget.style.color = 'var(--gold)'; e.currentTarget.style.background = 'rgba(196,154,42,0.1)'; }} onMouseLeave={e => { e.currentTarget.style.borderColor = 'rgba(196,154,42,0.25)'; e.currentTarget.style.background = 'transparent'; }}><PhoneIcon s={13} /></a>
+          </div>
+        )}
       </div>
     </div>
   );
@@ -841,7 +910,7 @@ function Pricing() {
             </div>
           ))}
         </div>
-        <p style={{ marginTop: '1.25rem', fontFamily: 'var(--font-mono)', color: 'var(--ink5)', fontSize: '0.6rem', letterSpacing: '0.08em' }}>* Prices vary by location and quantity. Bulk discounts for contractors ordering 3+ trucks.</p>
+        <p style={{ marginTop: '1.25rem', fontFamily: 'var(--font-mono)', color: 'var(--ink5)', fontSize: '0.6rem', letterSpacing: '0.08em' }}>* Prices vary by location and quantity. Machine-cut stone prices include transport. Bulk discounts for contractors ordering 3+ trucks.</p>
       </div>
     </section>
   );
@@ -1049,7 +1118,7 @@ function Contact({ onToast }) {
             <div style={{ fontFamily: 'var(--font-serif)', fontWeight: 700, fontSize: '1.4rem', color: 'var(--ink)', marginBottom: '0.5rem' }}>Get a Quote via WhatsApp</div>
             <p style={{ color: 'var(--ink5)', fontSize: '0.78rem', fontFamily: 'var(--font-mono)', letterSpacing: '0.04em', marginBottom: '2rem' }}>We'll reply to your WhatsApp with a full breakdown.</p>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-              {[{ ph: 'Your Full Name', k: 'name', t: 'text' }, { ph: 'Phone (0712 319 654 or +254…)', k: 'phone', t: 'tel' }, { ph: 'Delivery Area (e.g. Ruiru, Juja, Thika…)', k: 'location', t: 'text' }].map(f => (
+              {[{ ph: 'Your Full Name', k: 'name', t: 'text' }, { ph: 'Phone (0752 497 070 or +254…)', k: 'phone', t: 'tel' }, { ph: 'Delivery Area (e.g. Ruiru, Juja, Thika…)', k: 'location', t: 'text' }].map(f => (
                 <div key={f.k}>
                   <input type={f.t} placeholder={f.ph} value={form[f.k]} onChange={e => { setForm(p => ({ ...p, [f.k]: e.target.value })); setErrors(p => ({ ...p, [f.k]: '' })); }} style={inputS(f.k)} onFocus={e => e.target.style.borderColor = errors[f.k] ? '#ef4444' : 'var(--gold)'} onBlur={e => e.target.style.borderColor = errors[f.k] ? '#ef4444' : 'var(--cream3)'} />
                   {errors[f.k] && <div style={{ display: 'flex', gap: '0.35rem', alignItems: 'center', marginTop: '0.3rem' }}><AlertIcon /><span style={{ color: '#ef4444', fontSize: '0.68rem' }}>{errors[f.k]}</span></div>}
@@ -1076,7 +1145,7 @@ function Footer() {
       <div style={{ maxWidth: '1280px', margin: '0 auto', padding: '5rem 1.5rem 2.5rem' }}>
         <div className="footer-inner" style={{ display: 'flex', gap: '4rem', flexWrap: 'wrap', justifyContent: 'space-between', marginBottom: '4rem' }}>
           <div style={{ maxWidth: '320px', minWidth: '220px', flexShrink: 0 }}>
-            <div style={{ fontFamily: 'var(--font-serif)', fontWeight: 700, fontSize: '1.5rem', color: 'var(--white)', marginBottom: '0.25rem' }}>Brayo <em style={{ color: 'var(--gold)', fontStyle: 'italic' }}>wa</em> Ndarugo</div>
+            <div style={{ fontFamily: 'var(--font-serif)', fontWeight: 700, fontSize: '1.5rem', color: 'var(--white)', marginBottom: '0.25rem' }}>Bravo <em style={{ color: 'var(--gold)', fontStyle: 'italic' }}>wa</em> Ndarugo</div>
             <div style={{ fontFamily: 'var(--font-mono)', color: 'rgba(255,255,255,0.2)', fontSize: '0.55rem', letterSpacing: '0.2em', textTransform: 'uppercase', marginBottom: '1.5rem' }}>Building Materials · Kiambu County, Kenya</div>
             <p style={{ color: 'rgba(255,255,255,0.25)', fontSize: '0.82rem', lineHeight: 1.85, marginBottom: '2rem', fontWeight: 300 }}>Kenya's fastest-growing supplier of yellow stones, bush stones, ballast, river sand and more. Same-day delivery to Nairobi, Kiambu and beyond.</p>
             <div style={{ display: 'flex', gap: '0.6rem' }}>
