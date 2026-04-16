@@ -1,10 +1,10 @@
 import { useEffect, useState, useRef, useCallback, useMemo } from "react";
 
-const PHONE = "+254752497070";
-const WA_NUMBER = "254752497070";
-const BUSINESS_NAME = "Brayo wa Ndarugo Mawe";
-const TIKTOK_URL = "https://vm.tiktok.com/ZS9LLoHapUneQ-GhztX/";
-const FACEBOOK_URL = "https://www.facebook.com/brayo.wa.ndarugo.mawe.2025";
+const PHONE = "+254705427449";
+const WA_NUMBER = "254705427449";
+const BUSINESS_NAME = "YOUR BUSSINESS NAME";
+const TIKTOK_URL = "https://vm.tiktok.com";
+const FACEBOOK_URL = "https://www.facebook.com";
 
 const wa = (msg) => `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(msg)}`;
 
